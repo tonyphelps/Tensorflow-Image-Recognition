@@ -1,0 +1,60 @@
+* {
+	font-family: Calibri;
+}
+
+h1 {
+	color: #00b894;
+}
+
+.landing {
+	height: 100vh;
+	background-color: #778ca3;
+}
+
+.about {
+	width: 50%;
+	margin: 0 auto;
+	background-color: white;
+	padding: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.animal-img {
+	height: 100px;
+}
+
+.img-group {
+	margin-bottom: 15px;
+}
+
+.upload {
+}
+
+.loading {
+    height: 50px;
+    width: 50px;
+    display: none;
+    background: url('https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif') no-repeat;
+    background-position: center;
+    cursor: wait;
+    background-size: 50px 50px;
+ }
+
+/*
+form {
+	background-color: black;
+	padding: 10px;
+	color: white;
+}*/
+
+#upload-btn {
+	background-color: #00b894;
+	color: white;
+	font-family: Calibri;
+	border: none;
+}
+
+#results {
+	height: 100vh;
+	padding: 50px;
+}

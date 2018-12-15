@@ -1,0 +1,113 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>ML Animal Identification</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+  <div class="landing d-flex h-100">
+    <div class="about row justify-content-center align-self-center text-center">
+      <h1>Animal Identification via<br>Machine Learning</h1>
+      <div class="col-12 img-group">
+        <div class="card-group">
+          <div class="card">
+            <img class="card-img-top animal-img" src="../static/img/coyote3.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Coyote</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top animal-img" src="../static/img/tortoise.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Tortoise</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top animal-img" src="../static/img/kitfox.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Kit Fox</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top animal-img" src="../static/img/grayfox.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Gray Fox</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    	
+      <p>This application is designed to identify the conspicuous animal in each uploaded image and display the results and accuracy in a tabular format. It has been fine-tuned to identify the animals above. The model outputs the top three most likely candidates but we have chosen to display only the most likely.</p>
+      <p>Simply click 'Choose Files' and upload the desired images to begin.</p>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="upload">      
+          <form action='/upload' method=post enctype=multipart/form-data>
+            <p>
+              <input type=file name='multi_upload' multiple>
+              <input type=submit value=Upload id='upload-btn' onclick="loading()">
+             </p>
+          </form>
+        </div>
+        <div class="col-12">
+          <div class="loading mx-auto"></div>
+        </div>
+      </div>
+
+        
+      </div>
+      
+
+    </div>
+  </div>
+
+  {% if data %}
+  <div class="container-fluid" id="results">
+    <h2 class="text-center">Results</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Animal</th>
+            <th scope="col">Probability</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for prediction in data %}
+          <tr> 
+            <!-- <td><img src="{{ url_for('static', filename='uploads/{{ value[1] }}') }}" /></td> -->
+            <td>{{ prediction['Image'] }}</td>
+            <td>{{ prediction['Prediction'] }}</td>
+            <td style="color:{{ prediction['Color'] }}">{{ prediction['Probability'] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    
+    {% if scroll %}
+      <script>
+          document.getElementById('{{ scroll }}').scrollIntoView({ behavior: 'smooth' });
+          // or
+          // document.location.hash = '#' + '{{ scroll }}';
+      </script>
+    {% endif %}
+    <div class="text-center">
+      <a href="/export"><button type="button" class="btn btn-success">Export</button></a>
+    </div>
+  </div>
+  {% endif %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="../static/js/app.js"></script>
+
+</body>
+</html>
