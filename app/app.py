@@ -60,11 +60,14 @@ def upload_file():
         all_results = []
 
         # create directories to store each image type
-        os.mkdir('classification')
-        os.mkdir('classification/coyote')
-        os.mkdir('classification/kit_fox')
-        os.mkdir('classification/tortoise')
-        os.mkdir('classification/gray_fox')
+        if os.path.exists('classification'):
+            print('Already exists!')
+        else:
+            os.mkdir('classification')
+            os.mkdir('classification/coyote')
+            os.mkdir('classification/kit_fox')
+            os.mkdir('classification/tortoise')
+            os.mkdir('classification/gray_fox')
         
         for uploaded_file in uploaded_files:
             # create a path to the uploads folder
