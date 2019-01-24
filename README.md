@@ -4,4 +4,4 @@ Retrained VGG16 image recognition model to increase accuracy on wildlife images 
 
 Automated image meta-data extraction for timedelta "event" calculation.
 
-Created full-stack software to upload animal images, analize, predict, and export to CVS
+Created full-stack software to upload animal images, analyze, predict, and export to CVS
